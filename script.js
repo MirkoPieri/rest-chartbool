@@ -66,6 +66,7 @@ function getDataGraph(data) {
 
 // funzione per grafico lineare con vendite per ogni mese
 function getLineGraph(data) {
+  var elementi = getDataGraph(data);
   // creazione grafico a linea
   var ctx = document.getElementById('lineGraph');
   var myChart = new Chart(ctx, {
@@ -74,7 +75,7 @@ function getLineGraph(data) {
         labels: getMonth(), //chiamo funzione che ritorna array dei mesi
         datasets: [{
           label: '% of Sales per Month',
-          data: getDataGraph(data), //chiamo funzione che ritorna un array con la somma delle vendite per ogni mese
+          data: elementi, //chiamo funzione che ritorna un array con la somma delle vendite per ogni mese
           backgroundColor: [
               'gray',
               'purple',
@@ -196,5 +197,9 @@ function insertNewAmount() {
       }
     })
 
+  } else {
+    alert("Controlla bene i campi da Inserire");
   }
+
+
 }
