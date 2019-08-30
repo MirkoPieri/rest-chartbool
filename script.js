@@ -32,6 +32,12 @@ function getElementAjax() {
     insertNewAmount();
   })
 
+  $("header input").keyup(function() {
+    if (event.which == 13) {
+      insertNewAmount();
+    }
+  });
+
 
 
 }
@@ -180,9 +186,6 @@ function insertNewAmount() {
 
   // condizione per verificare che tutti i campi siano inseriri
   if (name != 'name' && data != 'data' && inputAmount != "") {
-    console.log(name);
-    console.log(data);
-    console.log(inputParse);
 
     // chiamata per aggiungere elementi
     $.ajax ({
@@ -194,7 +197,9 @@ function insertNewAmount() {
         'date': '01/' + data + '/2017'
       },
       success: function() {
-        alert('Elemento Inserito Correttamente');
+        $(".insert input").val("");
+        console.log('ciaoooo');
+        getElementAjax();
       },
       error: function() {
         alert("Error to Upload data");
