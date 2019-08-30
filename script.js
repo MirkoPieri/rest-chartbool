@@ -32,6 +32,8 @@ function getElementAjax() {
     insertNewAmount();
   })
 
+
+
 }
 
 // funzione per mesi in un array
@@ -168,7 +170,7 @@ function getPieGraph(data) {
   console.log(arrayNomi);
 }
 
-
+// Funzione per aggiungere nuove vendite al grafico
 function insertNewAmount() {
 
   var name = $(".insert select.name").val();
@@ -176,11 +178,13 @@ function insertNewAmount() {
   var inputAmount = $(".insert input").val();
   var inputParse = parseInt(inputAmount);
 
+  // condizione per verificare che tutti i campi siano inseriri
   if (name != 'name' && data != 'data' && inputAmount != "") {
     console.log(name);
     console.log(data);
     console.log(inputParse);
 
+    // chiamata per aggiungere elementi
     $.ajax ({
       url: 'http://157.230.17.132:4008/sales',
       method: "POST",
@@ -198,8 +202,7 @@ function insertNewAmount() {
     })
 
   } else {
-    alert("Controlla bene i campi da Inserire");
+    alert("Controlla bene i campi da inserire");
   }
-
 
 }
