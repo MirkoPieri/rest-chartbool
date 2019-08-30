@@ -16,30 +16,22 @@ function getElementAjax() {
 
     success: function(data) {
 
-      // creazione grafico a linea
-      var ctx = document.getElementById('myChart');
-      var myChart = new Chart(ctx, {
-        type: 'line',
-          data: {
-            labels: getMonth(), //chiamo funzione che ritorna array dei mesi
-            datasets: [{
-              label: '% of Sales per Month',
-              data: getDataGraph(data), //chiamo funzione che ritorna un array con la somma delle vendite per ogni mese
-              backgroundColor: [
-                  'rgba(255, 99, 132)'
-              ],
-              borderWidth: 5
-            }]
-          }
-        });
+      // richiamo della funzione per grafico lineare
+      getLineGraph(data)
 
-      valoreVenditore(data);
+      // richiamo della funzione per grafico a torta
+      getPieGraph(data);
 
     },
     error: function() {
       alert("Error to download data");
     }
   })
+
+  $('.insert button').click(function() {
+    insertNewAmount();
+  })
+
 }
 
 // funzione per mesi in un array
@@ -72,8 +64,42 @@ function getDataGraph(data) {
   return ammountSum;
 }
 
+// funzione per grafico lineare con vendite per ogni mese
+function getLineGraph(data) {
+  // creazione grafico a linea
+  var ctx = document.getElementById('lineGraph');
+  var myChart = new Chart(ctx, {
+    type: 'line',
+      data: {
+        labels: getMonth(), //chiamo funzione che ritorna array dei mesi
+        datasets: [{
+          label: '% of Sales per Month',
+          data: getDataGraph(data), //chiamo funzione che ritorna un array con la somma delle vendite per ogni mese
+          backgroundColor: [
+              'gray',
+              'purple',
+              'red',
+              'lightgreen',
+              'yellow',
+              'blue',
+              'pink',
+              'brown',
+              'gray',
+              'orange',
+              'white',
+              'lightpink',
+          ],
+          borderColor: [
+              'lightgray'
+          ],
+          borderWidth: 3
+        }]
+      }
+    });
+};
+
 // funzione per grafico a torta con venditori e percentuale
-function valoreVenditore(data) {
+function getPieGraph(data) {
 
   var valori = data
   var sommaVendite = 0;
@@ -120,9 +146,9 @@ function valoreVenditore(data) {
   }
 
   // grafico a torta
-  var ctx = document.getElementById('myChart1');
+  var ctx = document.getElementById('pieGraph');
   var myChart = new Chart(ctx, {
-    type: 'doughnut',
+    type: 'pie',
     data: {
       labels: arrayNomePercentuale, //array dei nomi dei venditori
       datasets: [{
@@ -138,4 +164,37 @@ function valoreVenditore(data) {
       }]
     }
   });
+  console.log(arrayNomi);
+}
+
+
+function insertNewAmount() {
+
+  var name = $(".insert select.name").val();
+  var data = $(".insert select.data").val();
+  var inputAmount = $(".insert input").val();
+  var inputParse = parseInt(inputAmount);
+
+  if (name != 'name' && data != 'data' && inputAmount != "") {
+    console.log(name);
+    console.log(data);
+    console.log(inputParse);
+
+    $.ajax ({
+      url: 'http://157.230.17.132:4008/sales',
+      method: "POST",
+      data: {
+        'salesman': name,
+        'amount': inputParse,
+        'date': '01/' + data + '/2017'
+      },
+      success: function() {
+        alert('Elemento Inserito Correttamente');
+      },
+      error: function() {
+        alert("Error to Upload data");
+      }
+    })
+
+  }
 }

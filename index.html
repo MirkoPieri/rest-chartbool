@@ -27,20 +27,56 @@
     <!-- JS: MY SCRIPT -->
     <script src="script.js" charset="utf-8"></script>
     <!-- IMG: ICON -->
-    <!-- <link rel="shortcut icon" href="img/me_icon.gif"> -->
-    <title>Graph</title>
+    <link rel="shortcut icon" href="image/graph.png">
+    <title>ChartBool</title>
   </head>
   <body>
+
+    <header>
+      <a href="#"><h1>ChartBool</h1></a>
+      <div class="insert">
+
+        <select class="name">
+          <option value="name">Seleziona Venditore</option>
+          <option value="Marco">Marco</option>
+          <option value="Giuseppe">Giuseppe</option>
+          <option value="Riccardo">Riccardo</option>
+          <option value="Roberto">Roberto</option>
+        </select>
+
+        <select class="data">
+          <option value="data">Seleziona Mese</option>
+          <option value="01">01</option>
+          <option value="02">02</option>
+          <option value="03">03</option>
+          <option value="04">04</option>
+          <option value="05">05</option>
+          <option value="06">06</option>
+          <option value="07">07</option>
+          <option value="08">08</option>
+          <option value="09">09</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+
+        <input type="text" placeholder="Inserisci Totale Vendita...">
+
+        <button type="button" name="button">Inserisci</button>
+
+      </div>
+
+    </header>
 
     <div class="container">
 
       <div class="graph">
           <!-- tipo di grafico a linea -->
-          <canvas id="myChart" width="600"></canvas>
+          <canvas id="lineGraph" width="800"></canvas>
       </div>
       <div class="graph">
           <!-- tipo di grafico a torta -->
-          <canvas id="myChart1" width="600"></canvas>
+          <canvas id="pieGraph" width="800"></canvas>
       </div>
 
     </div>

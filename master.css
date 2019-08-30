@@ -16,4 +16,54 @@
   padding: 50px 25px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+header {
+  height: 200px;
+  width: 100%;
+  background-color: #18171c;
+  position: relative;
+  border: 10px solid gray;
+}
+
+header h1 {
+  font-size: 40pt;
+  text-transform: uppercase;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Georgia, serif;
+  color: white;
+}
+
+header .insert {
+  position: absolute;
+  top: 95%;
+  left: 1%;
+  transform: translate(-1%, -95%);
+}
+
+header .insert input {
+  width: 200px;
+  height: 20px;
+  border: none;
+  padding-left: 10px;
+  border-radius:5px;
+  margin-left: 10px;
+}
+
+header .insert button {
+  border-radius:5px;
+  background-color: white;
+  border: 2px solid black;
+  padding: 3px;
+  cursor: pointer;
+}
+
+header .insert select {
+  cursor: pointer;
+  margin-left: 10px;
 }
